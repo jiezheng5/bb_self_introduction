@@ -9,25 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="mode-read">
+<body class="mode-tab">
 
 <!-- ───────────── Top chrome ───────────── -->
 <header class="chrome" role="banner">
-  <a class="brand" href="#top">
+  <a class="brand" href="#hero" data-action="nav-home">
     <span class="brand-mark" aria-hidden="true">JZ</span>
     <span class="brand-text">
       <span class="brand-name">Jie Zheng</span>
       <span class="brand-role">Principal Signal Integrity Engineer</span>
     </span>
   </a>
-  <nav class="chrome-nav" aria-label="Section">
-    <a href="#expertise">Expertise</a>
-    <a href="#methodology">Methodology</a>
-    <a href="#products">Products</a>
-    <a href="#leadership">Leadership</a>
-    <a href="#automation">Automation</a>
-    <a href="#roadmap">Roadmap</a>
-  </nav>
   <div class="chrome-actions">
     <button class="btn" data-action="toggle-notes" aria-pressed="false" title="Toggle speaker notes (N)">
       <span class="kbd">N</span> Notes
@@ -37,11 +29,6 @@
     </button>
   </div>
 </header>
-
-<!-- ───────────── Side rail: section indicator ───────────── -->
-<aside class="rail" aria-hidden="true">
-  <ol class="rail-list" id="rail-list"></ol>
-</aside>
 
 <!-- ───────────── Speaker notes drawer ───────────── -->
 <aside class="notes-drawer" id="notes-drawer" aria-hidden="true">
@@ -60,6 +47,15 @@
   <span id="present-total">19</span>
 </div>
 
+<div class="app-body">
+
+<!-- ───────────── Sidebar TOC ───────────── -->
+<aside class="sidebar" id="sidebar" aria-label="Slide navigation">
+  <div class="sidebar-head mono">Slides</div>
+  <nav class="sidebar-nav" id="sidebar-nav" role="tablist" aria-label="Presentation slides"></nav>
+</aside>
+
+<div class="content-area">
 <main id="top">
 
 <!-- ============================================================
@@ -928,7 +924,7 @@
   </header>
 
   <div class="close-actions">
-    <a class="btn" href="#hero">↑ Back to top</a>
+    <button class="btn" data-action="nav-home">↑ Back to start</button>
     <button class="btn" data-action="print">⌘ P · Print / save as PDF</button>
     <button class="btn btn-primary" data-action="toggle-present"><span class="kbd">P</span> Present mode</button>
   </div>
@@ -937,6 +933,24 @@
 </section>
 
 </main>
+
+<!-- ───────────── Slide navigation ───────────── -->
+<nav class="slide-nav" aria-label="Slide navigation">
+  <button class="btn" data-action="prev-slide" aria-label="Previous slide">
+    <span aria-hidden="true">←</span> Prev
+  </button>
+  <span class="slide-nav-info">
+    <span class="slide-nav-current" id="nav-current">1</span>
+    <span class="slide-nav-sep">/</span>
+    <span class="slide-nav-total" id="nav-total">19</span>
+  </span>
+  <button class="btn" data-action="next-slide" aria-label="Next slide">
+    Next <span aria-hidden="true">→</span>
+  </button>
+</nav>
+
+</div><!-- /content-area -->
+</div><!-- /app-body -->
 
 <script src="assets/script.js"></script>
 <script type="application/json" id="speaker-notes">[
