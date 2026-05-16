@@ -1,7 +1,62 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Static hosting stack for the self-intro-web site.
+Description: Static hosting with GitHub OIDC CI/CD for the self-intro-web site.
+
+Parameters:
+  GitHubOrg:
+    Type: String
+    Description: GitHub organization name (for OIDC setup)
+    Default: jiezheng5
+  GitHubRepo:
+    Type: String
+    Description: GitHub repository name (for OIDC setup)
+    Default: bb_self_introduction
+  OIDCProviderArn:
+    Type: String
+    Description: ARN of existing GitHub OIDC provider
+    Default: arn:aws:iam::936654323206:oidc-provider/token.actions.githubusercontent.com
+
+Conditions:
+  SetupGitHubOIDC: !And
+    - !Not [!Equals [!Ref GitHubOrg, ""]]
+    - !Not [!Equals [!Ref GitHubRepo, ""]]
+    - !Not [!Equals [!Ref OIDCProviderArn, ""]]
 
 Resources:
+  GitHubActionsRole:
+    Type: AWS::IAM::Role
+    Condition: SetupGitHubOIDC
+    Properties:
+      RoleName: !Sub '${AWS::StackName}-github-actions-role'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Ref OIDCProviderArn
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub 'repo:${GitHubOrg}/${GitHubRepo}:*'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/CloudFrontFullAccess
+      Policies:
+        - PolicyName: S3DeploymentAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:ListBucket
+                  - s3:DeleteObject
+                  - s3:PutObjectAcl
+                Resource:
+                  - !GetAtt SiteBucket.Arn
+                  - !Sub '${SiteBucket.Arn}/*'
+
   SiteBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -99,3 +154,7 @@ Outputs:
     Value: !Ref SiteDistribution
   DistributionDomainName:
     Value: !GetAtt SiteDistribution.DomainName
+  GitHubActionsRoleArn:
+    Condition: SetupGitHubOIDC
+    Value: !GetAtt GitHubActionsRole.Arn
+    Description: ARN of the IAM role for GitHub Actions
