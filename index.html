@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Jie Zheng — Principal Signal Integrity Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body class="mode-read">
+
+<!-- ───────────── Top chrome ───────────── -->
+<header class="chrome" role="banner">
+  <a class="brand" href="#top">
+    <span class="brand-mark" aria-hidden="true">JZ</span>
+    <span class="brand-text">
+      <span class="brand-name">Jie Zheng</span>
+      <span class="brand-role">Principal Signal Integrity Engineer</span>
+    </span>
+  </a>
+  <nav class="chrome-nav" aria-label="Section">
+    <a href="#expertise">Expertise</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#products">Products</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#automation">Automation</a>
+    <a href="#roadmap">Roadmap</a>
+  </nav>
+  <div class="chrome-actions">
+    <button class="btn" data-action="toggle-notes" aria-pressed="false" title="Toggle speaker notes (N)">
+      <span class="kbd">N</span> Notes
+    </button>
+    <button class="btn btn-primary" data-action="toggle-present" aria-pressed="false" title="Toggle presentation mode (P)">
+      <span class="kbd">P</span> Present
+    </button>
+  </div>
+</header>
+
+<!-- ───────────── Side rail: section indicator ───────────── -->
+<aside class="rail" aria-hidden="true">
+  <ol class="rail-list" id="rail-list"></ol>
+</aside>
+
+<!-- ───────────── Speaker notes drawer ───────────── -->
+<aside class="notes-drawer" id="notes-drawer" aria-hidden="true">
+  <header class="notes-head">
+    <span class="notes-label">Speaker notes</span>
+    <span class="notes-slide" id="notes-slide-label">—</span>
+    <button class="btn btn-ghost" data-action="toggle-notes" aria-label="Close notes">✕</button>
+  </header>
+  <div class="notes-body" id="notes-body"></div>
+</aside>
+
+<!-- ───────────── Slide counter (present mode) ───────────── -->
+<div class="present-hud" aria-hidden="true">
+  <span id="present-index">01</span>
+  <span class="present-sep">/</span>
+  <span id="present-total">19</span>
+</div>
+
+<main id="top">
+
+<!-- ============================================================
+     S00 — HERO
+============================================================ -->
+<section class="slide slide-hero" data-screen-label="00 Hero" id="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-meta">
+      <span class="tag">Signal Integrity · 224G · 1.6T Ethernet</span>
+    </div>
+    <h1 class="hero-title">
+      I build the systems that turn high-speed&nbsp;interconnect complexity into a <em>repeatable execution advantage.</em>
+    </h1>
+    <p class="hero-sub">
+      First-principles physics → empirical correlation → at-scale production. I make that capability permanent through industry standards leadership and design automation.
+    </p>
+    <div class="hero-side">
+      <div class="eye-diagram" aria-hidden="true">
+        <svg viewBox="0 0 240 140" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="eyeFade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.0"/>
+              <stop offset="50%" stop-color="var(--accent)" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <g stroke="var(--border)" stroke-width="0.5">
+            <line x1="0" y1="35" x2="240" y2="35"/>
+            <line x1="0" y1="70" x2="240" y2="70"/>
+            <line x1="0" y1="105" x2="240" y2="105"/>
+            <line x1="60" y1="0" x2="60" y2="140"/>
+            <line x1="120" y1="0" x2="120" y2="140"/>
+            <line x1="180" y1="0" x2="180" y2="140"/>
+          </g>
+          <g fill="none" stroke="url(#eyeFade)" stroke-width="1">
+            <path d="M0,20 C40,20 50,120 80,120 C110,120 130,20 160,20 C190,20 210,120 240,120"/>
+            <path d="M0,120 C40,120 50,20 80,20 C110,20 130,120 160,120 C190,120 210,20 240,20"/>
+            <path d="M0,30 C40,30 50,110 80,110 C110,110 130,30 160,30 C190,30 210,110 240,110"/>
+            <path d="M0,110 C40,110 50,30 80,30 C110,30 130,110 160,110 C190,110 210,30 240,30"/>
+            <path d="M0,45 C40,45 50,95 80,95 C110,95 130,45 160,45 C190,45 210,95 240,95"/>
+            <path d="M0,95 C40,95 50,45 80,45 C110,45 130,95 160,95 C190,95 210,45 240,45"/>
+          </g>
+          <g fill="var(--accent)" font-family="IBM Plex Mono" font-size="6">
+            <text x="4" y="10">PAM-4</text>
+            <text x="200" y="136">112 GBd</text>
+          </g>
+        </svg>
+        <span class="eye-caption">Eye diagram · PAM-4 · 224 Gb/s</span>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <div class="hero-stat">
+        <span class="hero-stat-num">18+</span>
+        <span class="hero-stat-lbl">years engineering<br/>high-speed interconnect</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">DAC · ACC<br/>AEC · AOC</span>
+        <span class="hero-stat-lbl">full passive-to-active<br/>product portfolio</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">IEEE 802.3<br/>OIF · USB-IF</span>
+        <span class="hero-stat-lbl">standards committee<br/>contributor</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">PyAEDT<br/>ADS · Skill</span>
+        <span class="hero-stat-lbl">EM &amp; circuit<br/>automation toolchain</span>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <span class="cta-hint">
+        Scroll to read · press <kbd>P</kbd> for presentation mode · <kbd>N</kbd> for speaker notes · <kbd>→</kbd>/<kbd>←</kbd> to step
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S01 — OUTLINE / EXPERTISE
+============================================================ -->
+<section class="slide" data-screen-label="01 Outline" id="expertise">
+  <header class="slide-head">
+    <span class="slide-num">S 01</span>
+    <h2 class="slide-title">Six integrated functions, one operating model</h2>
+    <p class="slide-deck">From first-principles physics, to empirical correlation, to at-scale production — closed loop, made permanent through standards and automation.</p>
+  </header>
+
+  <div class="expertise-grid">
+    <article class="cap-card">
+      <span class="cap-num">01</span>
+      <h3>EM &amp; SI Simulation</h3>
+      <p>Master the physics before we build. Time-domain, frequency-domain, channel-level — with passivity, causality and reciprocity as gating quality metrics.</p>
+    </article>
+    <article class="cap-card">
+      <span class="cap-num">02</span>
+      <h3>Test &amp; Failure Analysis</h3>
+      <p>Correlate simulation with reality. TDR/TDT localization, VNA frequency-domain truth, BER and eye measurements, multi-channel auto-testers for data integrity.</p>
+    </article>
+    <article class="cap-card">
+      <span class="cap-num">03</span>
+      <h3>Product Development</h3>
+      <p>Execute across DAC, ACC, AEC and AOC. Translate advanced SI capability into market-relevant outcomes under extreme schedule pressure.</p>
+    </article>
+    <article class="cap-card">
+      <span class="cap-num">04</span>
+      <h3>Project &amp; Risk Management</h3>
+      <p>Mechanisms over heroes. Physics-based exit criteria, fixture-readiness gates, escalation when physics conflicts with schedule.</p>
+    </article>
+    <article class="cap-card">
+      <span class="cap-num">05</span>
+      <h3>Standards Leadership</h3>
+      <p>IEEE 802.3, OIF, USB-IF, PCIe. Influence test methodology and channel-margin definitions — a strategic advantage, not a compliance burden.</p>
+    </article>
+    <article class="cap-card">
+      <span class="cap-num">06</span>
+      <h3>EM Design Automation</h3>
+      <p>PyAEDT, ADS Python, Virtuoso Skill, AWS Batch + Kubernetes HPC. Reusable, versioned libraries that institutionalise expertise and scale the team.</p>
+    </article>
+  </div>
+
+  <footer class="slide-foot">
+    <p class="pull">
+      “I close the loop from first-principles physics to at-scale production — and I make that capability permanent through standards and automation.”
+    </p>
+  </footer>
+</section>
+
+<!-- ============================================================
+     S02 — THE CORE CHALLENGE
+============================================================ -->
+<section class="slide" data-screen-label="02 Core Challenge" id="challenge">
+  <header class="slide-head">
+    <span class="slide-num">S 02</span>
+    <h2 class="slide-title">High-speed interconnect is a coupled optimization problem</h2>
+    <p class="slide-deck">Visible metrics — impedance, crosstalk, loss — are symptoms. Root causes are physical, and chasing them in isolation is how programs fail.</p>
+  </header>
+
+  <div class="two-col">
+    <div class="col">
+      <h3 class="col-h">Symptoms vs. root causes</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Visible metric</th><th>Underlying physical cause</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Impedance mismatch</td><td>Geometric discontinuity, dielectric uncertainty</td></tr>
+          <tr><td>Crosstalk</td><td>Coupling length, asymmetry, return-path disruption</td></tr>
+          <tr><td>Insertion loss</td><td>Conductor roughness, loss tangent, mode conversion</td></tr>
+          <tr><td>Jitter</td><td>Resonance, deterministic reflections, ISI buildup</td></tr>
+          <tr><td>EMI</td><td>Common-mode current, cage grounding, shield breaks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col">
+      <h3 class="col-h">The local-optimization trap</h3>
+      <ul class="bullets">
+        <li><strong>Impedance fix</strong> → can <em>degrade</em> common-mode conversion.</li>
+        <li><strong>EMC shield</strong> → can introduce mechanical tolerance risk.</li>
+        <li><strong>Routing for IL</strong> → can <em>amplify</em> crosstalk.</li>
+      </ul>
+      <div class="callout">
+        <span class="callout-tag">Method</span>
+        <p>Quantify system sensitivities and lock the success matrix <em>before</em> we begin. Optimize by data, not intuition. Protect the parameters hardest to recover later.</p>
+      </div>
+      <p class="muted">
+        The evolution of USB is the canonical case: a simple interface that exploded into a high-density, high-power ecosystem. When data rate, power and form factor collide, SI ceases to be component-level and becomes a system-integration discipline.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S03 — EM/SI SIMULATION
+============================================================ -->
+<section class="slide section-anchor" data-screen-label="03 EM/SI Simulation" id="methodology">
+  <header class="slide-head">
+    <span class="kicker">Methodology</span>
+    <span class="slide-num">S 03</span>
+    <h2 class="slide-title">A disciplined three-stage simulation sequence</h2>
+    <p class="slide-deck">From physical plausibility to system-level margin. A traceable link from geometry to S-parameters to channel margin — and a model whose <em>quality</em> is treated as a primary result.</p>
+  </header>
+
+  <div class="stage-rail">
+    <article class="stage">
+      <header><span class="stage-num">01</span><h3>Time-Domain</h3></header>
+      <p class="stage-tag mono">Fundamental control</p>
+      <p>Are the impedance and crosstalk profiles fundamentally sound? Find and fix the major discontinuities <em>before</em> wasting time fine-tuning a flawed structure.</p>
+      <ul class="chips">
+        <li>Impedance profile</li>
+        <li>NEXT / FEXT</li>
+        <li>Step response</li>
+      </ul>
+    </article>
+    <article class="stage">
+      <header><span class="stage-num">02</span><h3>Frequency-Domain</h3></header>
+      <p class="stage-tag mono">Resonance & mode</p>
+      <p>Hunt for resonances, high-Q behavior and mode-conversion paths. I don't hope equalization will save us; I re-engineer the physics to damp or migrate resonances out of band.</p>
+      <ul class="chips">
+        <li>Sdd21 / Scd21</li>
+        <li>Q-factor mapping</li>
+        <li>Cavity resonance</li>
+      </ul>
+    </article>
+    <article class="stage">
+      <header><span class="stage-num">03</span><h3>Channel-Level</h3></header>
+      <p class="stage-tag mono">System margin</p>
+      <p>Integrate EM models with TX/RX and circuit models to predict real-world outcomes: eye opening, jitter, and statistical channel margin (COM).</p>
+      <ul class="chips">
+        <li>Eye / BER</li>
+        <li>COM</li>
+        <li>IBIS-AMI</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="callout callout-wide">
+    <span class="callout-tag">Gate</span>
+    <p>Before we trust any S-parameter file, it must pass <em>passivity, causality, and reciprocity</em> checks. This rigor prevents misleading results and ensures our confidence is earned.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     S04 — ENHANCED EM ANALYSIS
+============================================================ -->
+<section class="slide" data-screen-label="04 EM Analysis" id="em-analysis">
+  <header class="slide-head">
+    <span class="slide-num">S 04</span>
+    <h2 class="slide-title">A mesh that is numerically stable but physically wrong is a failure</h2>
+    <p class="slide-deck">At today's data rates, the biggest technical risk is not the design — it's false confidence in a flawed model. Validating the <em>method</em> of prediction is principal-level work.</p>
+  </header>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="plot-frame">
+        <div class="plot-head"><span class="mono">S-parameter · |Sdd21|</span><span class="mono muted">solver output</span></div>
+        <svg viewBox="0 0 320 180" class="plot-svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="splot" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g stroke="var(--border)" stroke-width="0.5">
+            <line x1="40" y1="20" x2="40" y2="160"/>
+            <line x1="40" y1="160" x2="310" y2="160"/>
+            <line x1="40" y1="40"  x2="310" y2="40"  stroke-dasharray="2 4"/>
+            <line x1="40" y1="80"  x2="310" y2="80"  stroke-dasharray="2 4"/>
+            <line x1="40" y1="120" x2="310" y2="120" stroke-dasharray="2 4"/>
+          </g>
+          <path d="M40,40 C90,42 130,48 170,60 C200,72 220,90 240,110 C260,130 280,138 310,150 L310,160 L40,160 Z" fill="url(#splot)"/>
+          <path d="M40,40 C90,42 130,48 170,60 C200,72 220,90 240,110 C260,130 280,138 310,150" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <path d="M40,42 C90,44 130,52 170,68 C195,82 210,96 225,90 C240,82 250,118 270,125 C290,132 300,140 310,148" fill="none" stroke="var(--warn)" stroke-width="1" opacity="0.7" stroke-dasharray="3 2"/>
+          <g font-family="IBM Plex Mono" font-size="8" fill="var(--text-3)">
+            <text x="42" y="172">0</text>
+            <text x="150" y="172">20 GHz</text>
+            <text x="270" y="172">53 GHz</text>
+            <text x="4" y="44">0 dB</text>
+            <text x="4" y="84">-10</text>
+            <text x="4" y="124">-20</text>
+          </g>
+          <g font-family="IBM Plex Mono" font-size="9" fill="var(--accent)">
+            <text x="240" y="76">— sim</text>
+          </g>
+          <g font-family="IBM Plex Mono" font-size="9" fill="var(--warn)">
+            <text x="240" y="90">··· meas</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="plot-frame">
+        <div class="plot-head"><span class="mono">Mesh density · via field</span><span class="mono muted">audit view</span></div>
+        <svg viewBox="0 0 320 180" class="plot-svg" aria-hidden="true">
+          <rect x="40" y="20" width="240" height="140" fill="var(--bg)" stroke="var(--border)"/>
+          <g stroke="var(--accent)" stroke-width="0.4" opacity="0.65" fill="none">
+            <!-- mesh wireframe -->
+            <path d="M40,20 L160,90 L40,160 Z"/>
+            <path d="M280,20 L160,90 L280,160 Z"/>
+            <path d="M40,20 L280,20 L160,90 Z"/>
+            <path d="M40,160 L280,160 L160,90 Z"/>
+            <path d="M70,40 L160,90 L70,140"/>
+            <path d="M250,40 L160,90 L250,140"/>
+            <path d="M100,55 L160,90 L100,125"/>
+            <path d="M220,55 L160,90 L220,125"/>
+            <path d="M130,72 L160,90 L130,108"/>
+            <path d="M190,72 L160,90 L190,108"/>
+            <circle cx="160" cy="90" r="4" fill="var(--warn)" stroke="none"/>
+            <circle cx="160" cy="90" r="14" fill="none" stroke="var(--warn)" stroke-dasharray="2 3"/>
+          </g>
+          <g font-family="IBM Plex Mono" font-size="9" fill="var(--warn)">
+            <text x="180" y="86">pad transition</text>
+            <text x="180" y="98">high field gradient</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <ul class="bullets bullets-tight">
+    <li><strong>Mesh quality audit</strong> in pin-to-pad transitions, anti-pad edges and other high-field-gradient regions.</li>
+    <li><strong>Boundary conditions, port setup &amp; material models</strong> — idealized PEC can hide loss and phase that breaks correlation.</li>
+    <li><strong>Validation of the <em>methodology</em></strong>, not just consumption of the plot.</li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     S05 — RF TESTING & DEBUGGING
+============================================================ -->
+<section class="slide" data-screen-label="05 RF Testing" id="rf-testing">
+  <header class="slide-head">
+    <span class="slide-num">S 05</span>
+    <h2 class="slide-title">Rapid, defensible root-cause isolation — not a compliance checkmark</h2>
+    <p class="slide-deck">Four complementary domains. Time and frequency cross-validate a single physical hypothesis. Automation is a <em>data-quality</em> tool, not a throughput tool.</p>
+  </header>
+
+  <div class="quad-grid">
+    <article class="quad">
+      <header><span class="quad-num">01</span><h3>TDR / TDT</h3></header>
+      <p class="quad-tag mono">Localization</p>
+      <p>Tells me <em>where</em> the problem is — launch, connector, via field. Immediately shortens the debug loop.</p>
+    </article>
+    <article class="quad">
+      <header><span class="quad-num">02</span><h3>VNA</h3></header>
+      <p class="quad-tag mono">Frequency-domain truth</p>
+      <p>Mixed-mode S-parameters tell me the <em>what</em> and <em>how much</em>: loss slope, resonant notches, mode conversion.</p>
+    </article>
+    <article class="quad">
+      <header><span class="quad-num">03</span><h3>BER &amp; Eye</h3></header>
+      <p class="quad-tag mono">Final arbiter</p>
+      <p>Active products live or die here. A passive channel that looks marginal may be fine once EQ and CDR engage.</p>
+    </article>
+    <article class="quad">
+      <header><span class="quad-num">04</span><h3>Multi-channel auto-test</h3></header>
+      <p class="quad-tag mono">Data-quality system</p>
+      <p>Eliminates operator variance, guarantees traceability, enables statistically meaningful analysis across manufacturing lots.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     S06 — PRODUCT DEVELOPMENT (case study)
+============================================================ -->
+<section class="slide" data-screen-label="06 100G PAM4 ACC" id="products">
+  <header class="slide-head">
+    <span class="kicker">Products</span>
+    <span class="slide-num">S 06</span>
+    <h2 class="slide-title">Case study — 100 G PAM-4 Active Copper Cable, 26 AWG, 8 m</h2>
+    <p class="slide-deck">A technology demonstration treated as a <em>system-validation milestone</em>, not a marketing event. Cable loss, connector transition, equalization strategy, power and thermal — all aligned, with a repeatable test methodology.</p>
+  </header>
+
+  <div class="case-grid">
+    <div class="case-meta">
+      <dl class="meta-dl">
+        <dt>Product class</dt><dd>ACC · Active Copper Cable</dd>
+        <dt>Reach</dt><dd>8 m, 26 AWG</dd>
+        <dt>Signaling</dt><dd>PAM-4, 100 GbE</dd>
+        <dt>Year</dt><dd>OFC 2016 demonstration</dd>
+        <dt>Partner</dt><dd>Broadcom PHY</dd>
+        <dt>Outcome</dt><dd>Validated low-cost AOC alternative for short-reach data center</dd>
+      </dl>
+    </div>
+    <div class="case-body">
+      <h3 class="col-h">What it actually took</h3>
+      <ul class="bullets">
+        <li><strong>Loss budget</strong> aligned across cable, connectors and equalizer gain — not just nominal, but worst-case-over-temperature.</li>
+        <li><strong>Connector transition design</strong> de-risked the highest-Q discontinuity in the channel.</li>
+        <li><strong>Active equalization strategy</strong> co-designed with the PHY, not bolted on.</li>
+        <li><strong>Power &amp; thermal envelope</strong> respected at the cable head and at the host.</li>
+        <li><strong>A new test methodology</strong> invented to prove the performance was <em>repeatable</em> across builds.</li>
+      </ul>
+      <div class="callout">
+        <span class="callout-tag">Principal-level insight</span>
+        <p>The technical challenge is never just "meeting the eye diagram." It's creating a design and validation flow that survives variation — in the design, in assembly, and in the customer's lab.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S07 — PORTFOLIO EXPANSION
+============================================================ -->
+<section class="slide" data-screen-label="07 Portfolio" id="portfolio">
+  <header class="slide-head">
+    <span class="slide-num">S 07</span>
+    <h2 class="slide-title">A reusable development engine, applied across the portfolio</h2>
+    <p class="slide-deck">Each product class has a different dominant bottleneck. A common operating model lets us shift product without relearning first principles.</p>
+  </header>
+
+  <table class="data-table data-table-wide">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Dominant bottleneck</th>
+        <th>Key risks</th>
+        <th>Where margin is won</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DAC · Passive</td>
+        <td>Loss &amp; crosstalk</td>
+        <td>Cable construction, connector return path</td>
+        <td>Material, geometry, shield continuity</td>
+      </tr>
+      <tr>
+        <td>ACC · Active Copper</td>
+        <td>IC behavior, power, firmware</td>
+        <td>Equalizer/CDR co-design, thermal</td>
+        <td>PHY-cable co-design, EQ adaptation</td>
+      </tr>
+      <tr>
+        <td>AEC · Active Electrical</td>
+        <td>Re-timer behavior + EMC</td>
+        <td>Latency budget, EMC containment</td>
+        <td>Re-timer placement, return path</td>
+      </tr>
+      <tr>
+        <td>AOC · Active Optical</td>
+        <td>O/E conversion, alignment</td>
+        <td>Optical sub-assembly variation, eye health</td>
+        <td>Driver/receiver matching, packaging</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="process-strip" aria-label="Common engineering operating model">
+    <span class="proc-label mono">Common operating model</span>
+    <ol class="process">
+      <li><span>1</span>Define success matrix<br/><em>with the BU</em></li>
+      <li><span>2</span>Model dominant physics</li>
+      <li><span>3</span>Validate<br/><em>fixture &amp; de-embed</em></li>
+      <li><span>4</span>Correlate<br/><em>sim ↔ meas</em></li>
+      <li><span>5</span>Lock<br/><em>production controls</em></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================
+     S08 — CONNECTOR DEVELOPMENT (OSFP 224G)
+============================================================ -->
+<section class="slide" data-screen-label="08 Connector 224G" id="connector">
+  <header class="slide-head">
+    <span class="slide-num">S 08</span>
+    <h2 class="slide-title">At 224 Gb/s, the connector <em>is</em> the channel</h2>
+    <p class="slide-deck">SI performance, mechanical packaging and manufacturing repeatability interact most violently here. A connector that is perfect in the model but fragile in production is a failed design.</p>
+  </header>
+
+  <div class="conn-grid">
+    <div class="conn-art">
+      <svg viewBox="0 0 320 220" aria-hidden="true">
+        <defs>
+          <linearGradient id="connBg" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="var(--surface)"/>
+            <stop offset="100%" stop-color="var(--bg-soft)"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="40" width="280" height="140" rx="6" fill="url(#connBg)" stroke="var(--border-strong)"/>
+        <!-- shield cage -->
+        <rect x="36" y="56" width="248" height="108" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <!-- pin field -->
+        <g fill="var(--text-2)">
+          <!-- top row -->
+          <g><circle cx="60"  cy="84" r="3"/><circle cx="80"  cy="84" r="3"/><circle cx="100" cy="84" r="3"/><circle cx="120" cy="84" r="3"/><circle cx="140" cy="84" r="3"/><circle cx="160" cy="84" r="3"/><circle cx="180" cy="84" r="3"/><circle cx="200" cy="84" r="3"/><circle cx="220" cy="84" r="3"/><circle cx="240" cy="84" r="3"/><circle cx="260" cy="84" r="3"/></g>
+          <!-- highlighted differential pair -->
+          <g fill="var(--accent)"><circle cx="120" cy="120" r="4"/><circle cx="140" cy="120" r="4"/></g>
+          <!-- middle row -->
+          <g><circle cx="60"  cy="120" r="3"/><circle cx="80"  cy="120" r="3"/><circle cx="100" cy="120" r="3"/><circle cx="160" cy="120" r="3"/><circle cx="180" cy="120" r="3"/><circle cx="200" cy="120" r="3"/><circle cx="220" cy="120" r="3"/><circle cx="240" cy="120" r="3"/><circle cx="260" cy="120" r="3"/></g>
+          <!-- bottom row -->
+          <g><circle cx="60"  cy="156" r="3"/><circle cx="80"  cy="156" r="3"/><circle cx="100" cy="156" r="3"/><circle cx="120" cy="156" r="3"/><circle cx="140" cy="156" r="3"/><circle cx="160" cy="156" r="3"/><circle cx="180" cy="156" r="3"/><circle cx="200" cy="156" r="3"/><circle cx="220" cy="156" r="3"/><circle cx="240" cy="156" r="3"/><circle cx="260" cy="156" r="3"/></g>
+        </g>
+        <!-- mating face -->
+        <rect x="20" y="100" width="14" height="20" fill="var(--text-3)"/>
+        <g font-family="IBM Plex Mono" font-size="9" fill="var(--text-3)">
+          <text x="20" y="32">OSFP · 2×1 SMT</text>
+          <text x="220" y="32">224 Gbps / lane</text>
+          <text x="20" y="204">cage ground</text>
+          <text x="180" y="204">differential pair</text>
+        </g>
+        <line x1="170" y1="195" x2="135" y2="128" stroke="var(--accent)" stroke-width="0.5" stroke-dasharray="2 2"/>
+      </svg>
+      <span class="art-caption mono">OSFP 2×1 SMT · 224 G PAM-4 demo (DesignCon 2024)</span>
+    </div>
+
+    <div class="conn-priorities">
+      <h3 class="col-h">Design priorities, in order</h3>
+      <ol class="priority-list">
+        <li><span class="prio-n">01</span><div><strong>Return-path topology</strong><p>Cage grounding, shield current paths. Foundation; everything else fails without it.</p></div></li>
+        <li><span class="prio-n">02</span><div><strong>Symmetry control</strong><p>Minimize differential-to-common-mode conversion. System margin and EMC both depend on it.</p></div></li>
+        <li><span class="prio-n">03</span><div><strong>Crosstalk containment</strong><p>Shields, spacing, coupling-length control.</p></div></li>
+        <li><span class="prio-n">04</span><div><strong>Resonance suppression</strong><p>Pin-field and cavity Q must be designed out, not equalized away.</p></div></li>
+      </ol>
+      <div class="callout">
+        <span class="callout-tag">Maturity gate</span>
+        <p>From day one: plating thickness, contact tolerance, solder-process distortion, mating cycles. <em>Manufacturing variation</em> is a first-class input to the model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S09 — PROJECT MANAGEMENT
+============================================================ -->
+<section class="slide" data-screen-label="09 Project Mgmt" id="leadership">
+  <header class="slide-head">
+    <span class="kicker">Leadership</span>
+    <span class="slide-num">S 09</span>
+    <h2 class="slide-title">Mechanisms over heroes</h2>
+    <p class="slide-deck">A managed system with explicit risk controls. Programs accumulate hidden technical debt when stages are decoupled — and that debt always surfaces late in validation as a "surprise" crisis.</p>
+  </header>
+
+  <div class="two-col">
+    <div class="col">
+      <h3 class="col-h">Five operating principles</h3>
+      <ol class="principle-list">
+        <li><span>01</span>Define the real goal</li>
+        <li><span>02</span>Bound the problem</li>
+        <li><span>03</span>Make trade-offs explicit</li>
+        <li><span>04</span>Build mechanisms, not reliance on heroes</li>
+        <li><span>05</span>Maintain active risk control</li>
+      </ol>
+    </div>
+    <div class="col">
+      <h3 class="col-h">In practice</h3>
+      <ul class="bullets">
+        <li><strong>Milestone reviews</strong> with measurable, physics-based exit criteria — not slideware.</li>
+        <li><strong>Fixture readiness</strong> is a program gate. No fixtures, no measurement, no signoff.</li>
+        <li><strong>Escalate</strong> when the laws of physics conflict with the schedule. Loud, early, with data.</li>
+        <li><strong>Live dashboards</strong> for tracking and gating. We do not rely on all-nighters.</li>
+      </ul>
+      <figure class="dashboard-fig">
+        <img src="assets/projectDashboard.png" alt="Live project dashboard tracking risk and schedule" />
+        <figcaption class="mono muted">Live program dashboard — example artifact</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S10 — TRANSPARENCY ACROSS TEAMS
+============================================================ -->
+<section class="slide" data-screen-label="10 Transparency" id="transparency">
+  <header class="slide-head">
+    <span class="slide-num">S 10</span>
+    <h2 class="slide-title">Electrical performance is a cross-functional output</h2>
+    <p class="slide-deck">SI, layout, manufacturing and QA all change the final waveform. Hidden assumptions create local optima that fail at system level. Transparency is a quality mechanism, not bureaucracy.</p>
+  </header>
+
+  <div class="venn-strip">
+    <span class="venn-blob">SI</span>
+    <span class="venn-blob">PCB Layout</span>
+    <span class="venn-blob venn-center">final waveform</span>
+    <span class="venn-blob">Manufacturing</span>
+    <span class="venn-blob">QA &amp; Test</span>
+  </div>
+
+  <ul class="bullets bullets-3col">
+    <li><strong>Shared success matrix</strong><br/>One agreed target set — IL, RL, NEXT, FEXT, mode conversion — under explicit TX/RX equalization assumptions.</li>
+    <li><strong>Common assumption ledger</strong><br/>EQ presets, fixture de-embed, material models — declared, not folkloric.</li>
+    <li><strong>Visible risk register</strong><br/>Escalate with data, not emotion. Tracebility from process parameter to electrical metric.</li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     S11 — INDUSTRY STANDARDS
+============================================================ -->
+<section class="slide" data-screen-label="11 Standards" id="standards">
+  <header class="slide-head">
+    <span class="slide-num">S 11</span>
+    <h2 class="slide-title">Standards participation as strategic foresight</h2>
+    <p class="slide-deck">Three advantages: early insight into future electrical limits, influence over test methodology, and an 18–24 month preview of customer requirements.</p>
+  </header>
+
+  <div class="logo-grid" aria-label="Standards bodies">
+    <span class="org-card"><span class="org-name">IEEE 802.3</span><span class="org-sub mono">dj · 200G / 800G / 1.6T</span></span>
+    <span class="org-card"><span class="org-name">OIF</span><span class="org-sub mono">CEI-224G · co-packaged optics</span></span>
+    <span class="org-card"><span class="org-name">USB-IF</span><span class="org-sub mono">USB4 v2 · 80 Gb/s</span></span>
+    <span class="org-card"><span class="org-name">PCI-SIG</span><span class="org-sub mono">PCIe Gen 6 / 7</span></span>
+    <span class="org-card"><span class="org-name">HDMI Forum</span><span class="org-sub mono">HDMI 2.1+ FRL</span></span>
+    <span class="org-card"><span class="org-name">Thunderbolt</span><span class="org-sub mono">TB4 / TB5</span></span>
+  </div>
+
+  <div class="callout callout-wide">
+    <span class="callout-tag">COM · Channel Operating Margin</span>
+    <p>I use COM to <em>statistically</em> quantify channel performance against complex DFE/CTLE equalization architectures — and to ground discussions with the BU in the same metric the standards body uses.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     S12 — DESIGN AUTOMATION FLOW (intro)
+============================================================ -->
+<section class="slide" data-screen-label="12 Automation" id="automation">
+  <header class="slide-head">
+    <span class="kicker">Automation</span>
+    <span class="slide-num">S 12</span>
+    <h2 class="slide-title">Automation is a quality system, not a speed system</h2>
+    <p class="slide-deck">The primary objective is <em>deterministic engineering execution</em>: reproducible setups, consistent sweeps, standardized result extraction, auditable reports. Speed is a side effect.</p>
+  </header>
+
+  <div class="failure-modes">
+    <span class="fm-label mono">Three failure modes automation eliminates</span>
+    <div class="fm-grid">
+      <article class="fm-card">
+        <span class="fm-num">FM 01</span>
+        <h3>Operator-to-operator variance</h3>
+        <p>Same model, two engineers, two answers. Standardised tooling removes the human degree of freedom.</p>
+      </article>
+      <article class="fm-card">
+        <span class="fm-num">FM 02</span>
+        <h3>Incomplete post-processing</h3>
+        <p>Half the value of a simulation is in the extraction. Templates ensure every result generates every metric, every time.</p>
+      </article>
+      <article class="fm-card">
+        <span class="fm-num">FM 03</span>
+        <h3>Hidden setup deltas</h3>
+        <p>Revisions diverge silently. Version-controlled configs make correlation studies actually possible.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     S13 — AUTOMATION: IMPLEMENTATION + MANAGEMENT
+============================================================ -->
+<section class="slide" data-screen-label="13 Automation 2" id="automation-2">
+  <header class="slide-head">
+    <span class="slide-num">S 13</span>
+    <h2 class="slide-title">Two systems, not one — engineering + governance</h2>
+    <p class="slide-deck">Each technical module needs a management rule to be effective. This is the difference between a collection of scripts and a scalable organisational capability.</p>
+  </header>
+
+  <table class="data-table data-table-wide pair-table">
+    <thead>
+      <tr><th>Implementation module</th><th>Management rule</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Domain decomposition / parallelisation</td><td>Priority map — what gets parallelised first</td></tr>
+      <tr><td>Mesh policy control</td><td>Adaptive vs. signoff mesh, by program phase</td></tr>
+      <tr><td>Cloud HPC orchestration (AWS Batch · K8s)</td><td>Cost / performance governance &amp; budgets</td></tr>
+      <tr><td>Job monitoring &amp; retry</td><td>Escalation rules, on-call SLA</td></tr>
+      <tr><td>Batch vs. interactive submission</td><td>Approval workflow for long-running sweeps</td></tr>
+      <tr><td>Automated post-processing</td><td>Mandatory metrics on every report</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <span class="callout-tag">Tacit knowledge encoded</span>
+    <p>The system knows when a simplified PEC model is acceptable for a trend study — and when it <em>must</em> be retired before signoff. This prevents junior engineers from generating false confidence with technically-correct, physically-misleading simulations.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     S14 — DESIGN AUTOMATION LIBRARIES
+============================================================ -->
+<section class="slide" data-screen-label="14 Libraries" id="libraries">
+  <header class="slide-head">
+    <span class="slide-num">S 14</span>
+    <h2 class="slide-title">Versioned libraries — how automation becomes durable</h2>
+    <p class="slide-deck">Reusable, version-controlled Python libraries and templates for everything from tool launch to report generation. The library layer is what gives senior engineers leverage and lets new hires contribute on day one.</p>
+  </header>
+
+  <div class="lib-grid">
+    <article class="lib-card"><span class="lib-tag mono">launch</span><h3>Tool launch</h3><p>HFSS, ADS, Virtuoso — one interface, identical environment.</p></article>
+    <article class="lib-card"><span class="lib-tag mono">geom</span><h3>Geometry parameterisation</h3><p>Parametric models reused across programs; dimensions become typed variables.</p></article>
+    <article class="lib-card"><span class="lib-tag mono">sweep</span><h3>Sweep definition</h3><p>Frequency, corner and DOE sweeps declared in YAML, not buried in the GUI.</p></article>
+    <article class="lib-card"><span class="lib-tag mono">io</span><h3>Data export</h3><p>Standardised S-parameter, Touchstone and CITI export. No file format guesswork.</p></article>
+    <article class="lib-card"><span class="lib-tag mono">qa</span><h3>Passivity / causality checks</h3><p>Automatic; results that fail can't progress to channel simulation.</p></article>
+    <article class="lib-card"><span class="lib-tag mono">report</span><h3>Report generation</h3><p>Templated, traceable, regenerable from the same config six months later.</p></article>
+  </div>
+
+  <p class="muted long">If a customer challenges a result six months later, we reconstruct the simulation <em>exactly</em> as it was run — solver settings, material models, post-processing assumptions. That is the talent leverage: senior engineers focus on architecture and interpretation; the library handles the baseline.</p>
+</section>
+
+<!-- ============================================================
+     S15 — CHECKLIST: PCBA
+============================================================ -->
+<section class="slide" data-screen-label="15 PCBA Checklist" id="pcba-checklist">
+  <header class="slide-head">
+    <span class="kicker">Checklists</span>
+    <span class="slide-num">S 15</span>
+    <h2 class="slide-title">PCBA design checklist — prevention, not bureaucracy</h2>
+    <p class="slide-deck">Six gates. Every one of them maps to a high-cost failure I've seen at least three times. The point of a checklist is to make those failures unrepeatable.</p>
+  </header>
+
+  <ol class="checklist">
+    <li><span class="ck-n">01</span><div><h3>Success matrix</h3><p>IL, RL, crosstalk, mode conversion — agreed <em>under explicit TX/RX equalization assumptions</em>. Without this, teams generate data that is technically correct but useless for decisions.</p></div></li>
+    <li><span class="ck-n">02</span><div><h3>Stack-up &amp; material realism</h3><p>Frequency-dependent loss. Copper roughness. Resin-content variation. At high data rates, these are the difference between a model that correlates and one that doesn't.</p></div></li>
+    <li><span class="ck-n">03</span><div><h3>Routing discipline</h3><p>Impedance, symmetry, skew — enforced. Return-path continuity is <em>mandatory and audited</em>, especially at layer transitions.</p></div></li>
+    <li><span class="ck-n">04</span><div><h3>Discontinuity engineering</h3><p>Vias, anti-pads, pad entries are not left to chance. Default library geometries do not define our high-speed performance.</p></div></li>
+    <li><span class="ck-n">05</span><div><h3>Proof &amp; correlation</h3><p>Fixture and coupon strategy defined <em>first</em>. Simulate, then measure with TDR, VNA, resonance scan. Correlation is a deliverable.</p></div></li>
+    <li><span class="ck-n">06</span><div><h3>Robustness &amp; production control</h3><p>Tolerance sensitivity analyzed. Production control plan maps each process check to the electrical metric it protects.</p></div></li>
+  </ol>
+</section>
+
+<!-- ============================================================
+     S16 — CHECKLIST: CONNECTOR
+============================================================ -->
+<section class="slide" data-screen-label="16 Connector Checklist" id="connector-checklist">
+  <header class="slide-head">
+    <span class="slide-num">S 16</span>
+    <h2 class="slide-title">Connector checklist — same discipline, concentrated physics</h2>
+    <p class="slide-deck">Manufacturing sensitivities are more severe. The success matrix aligns to <em>system-level</em> channel margin, not isolated S-parameter targets.</p>
+  </header>
+
+  <div class="conn-checklist">
+    <article class="ccl-card"><span class="ccl-n">01</span><h3>Return-path topology</h3><p>The foundation. Poor design here manifests as system-killing mode conversion and EMI.</p></article>
+    <article class="ccl-card"><span class="ccl-n">02</span><h3>Asymmetry control</h3><p>Even with good Zdiff, physical asymmetry creates common-mode energy that degrades margin and causes failures.</p></article>
+    <article class="ccl-card"><span class="ccl-n">03</span><h3>Crosstalk strategy</h3><p>Every tool: shields, spacing, coupling-length control.</p></article>
+    <article class="ccl-card"><span class="ccl-n">04</span><h3>Resonance suppression</h3><p>Design out cavities and stubs that create high-Q traps.</p></article>
+    <article class="ccl-card ccl-card-wide"><span class="ccl-n">05</span><h3>Variation analysis · the maturity gate</h3><p>Not production-ready until we have modeled and tested the impact of manufacturing tolerances, plastic drift, plating variation and mating repeatability.</p></article>
+  </div>
+</section>
+
+<!-- ============================================================
+     S17 — FOUR-QUADRANT CORRELATION MATRIX (interactive)
+============================================================ -->
+<section class="slide slide-quadrant" data-screen-label="17 Correlation Matrix" id="correlation">
+  <header class="slide-head">
+    <span class="slide-num">S 17</span>
+    <h2 class="slide-title">When simulation ≠ measurement, I force the diagnosis into four quadrants</h2>
+    <p class="slide-deck">Replace generic debate with a discriminating diagnostic process. A mismatch can have only four root causes — its signature usually narrows the search to one quadrant immediately.</p>
+  </header>
+
+  <div class="quadrant-shell">
+    <div class="quadrant-axes" aria-hidden="true">
+      <span class="ax ax-top">SIMULATION  side</span>
+      <span class="ax ax-right">MEASUREMENT  side</span>
+      <span class="ax ax-left">Manufacturing  ←  Physics / Model</span>
+    </div>
+    <div class="quadrant-grid" role="tablist" aria-label="Four-quadrant correlation matrix">
+      <button class="qd qd-q1" role="tab" data-quadrant="q1" aria-selected="true">
+        <span class="qd-id">Q1</span>
+        <span class="qd-title">Model Deficiency</span>
+        <span class="qd-sub mono">simulation · physics</span>
+      </button>
+      <button class="qd qd-q3" role="tab" data-quadrant="q3" aria-selected="false">
+        <span class="qd-id">Q3</span>
+        <span class="qd-title">Setup Error</span>
+        <span class="qd-sub mono">measurement · method</span>
+      </button>
+      <button class="qd qd-q2" role="tab" data-quadrant="q2" aria-selected="false">
+        <span class="qd-id">Q2</span>
+        <span class="qd-title">As-Built Deviation</span>
+        <span class="qd-sub mono">simulation · part</span>
+      </button>
+      <button class="qd qd-q4" role="tab" data-quadrant="q4" aria-selected="false">
+        <span class="qd-id">Q4</span>
+        <span class="qd-title">DUT Variation</span>
+        <span class="qd-sub mono">measurement · part</span>
+      </button>
+    </div>
+    <aside class="quadrant-detail" id="quadrant-detail">
+      <div class="qd-panel" data-panel="q1">
+        <h3>Q1 — Model Deficiency</h3>
+        <p class="qd-lede">The model is wrong.</p>
+        <ul class="bullets">
+          <li>Geometry not true-to-fab (etch factors, solder fillets, plating)</li>
+          <li>Material model incorrect (frequency-dependent loss, anisotropy)</li>
+          <li>Missing physics — radiation, surface roughness, plating effects</li>
+        </ul>
+        <p class="qd-sig mono"><strong>Signature</strong> — broadband slope error, dB offset.</p>
+      </div>
+      <div class="qd-panel" data-panel="q2" hidden>
+        <h3>Q2 — As-Built Deviation</h3>
+        <p class="qd-lede">The model is perfect; the physical part deviates.</p>
+        <ul class="bullets">
+          <li>Process drift versus nominal</li>
+          <li>Tolerance stack-up across mating components</li>
+          <li>Assembly variation — solder fillet, wick, voids</li>
+        </ul>
+        <p class="qd-sig mono"><strong>Signature</strong> — narrow notch shift, resonance migration.</p>
+      </div>
+      <div class="qd-panel" data-panel="q3" hidden>
+        <h3>Q3 — Setup Error</h3>
+        <p class="qd-lede">The measurement is wrong. Most underestimated quadrant.</p>
+        <ul class="bullets">
+          <li>De-embedding / calibration error</li>
+          <li>Port mapping or definition error</li>
+          <li>VNA IF bandwidth, averaging, dynamic range</li>
+        </ul>
+        <p class="qd-sig mono"><strong>Signature</strong> — noise floor artefacts, port-pair asymmetry.</p>
+      </div>
+      <div class="qd-panel" data-panel="q4" hidden>
+        <h3>Q4 — DUT / Environmental Variation</h3>
+        <p class="qd-lede">Model and method are fine; the specific DUT is unrepresentative.</p>
+        <ul class="bullets">
+          <li>Sample-to-sample spread</li>
+          <li>Mating cycles, wear, contamination</li>
+          <li>Temperature / humidity effects</li>
+        </ul>
+        <p class="qd-sig mono"><strong>Signature</strong> — fixed in re-mate or sample swap.</p>
+      </div>
+    </aside>
+  </div>
+
+  <p class="quadrant-foot mono muted">Click a quadrant → see its signature and the minimum-cost experiment to isolate it.</p>
+</section>
+
+<!-- ============================================================
+     S18 — ETHERNET ROADMAP (interactive timeline)
+============================================================ -->
+<section class="slide" data-screen-label="18 Ethernet Roadmap" id="roadmap">
+  <header class="slide-head">
+    <span class="kicker">Business context</span>
+    <span class="slide-num">S 18</span>
+    <h2 class="slide-title">The roadmap that defines the urgency</h2>
+    <p class="slide-deck">At 200 Gb/s per lane and beyond, passive channel margin disappears. Sensitivity to every discontinuity rises exponentially — and validation workload becomes immense. Interconnect engineering is a <em>strategic enabler</em>.</p>
+  </header>
+
+  <div class="roadmap" id="roadmap-chart" aria-label="Ethernet rate evolution">
+    <div class="rm-axis">
+      <span class="rm-year">1995</span>
+      <span class="rm-year">2005</span>
+      <span class="rm-year">2015</span>
+      <span class="rm-year">2025</span>
+      <span class="rm-year">2030+</span>
+    </div>
+    <ol class="rm-list">
+      <li class="rm-node" data-year="1995"><span class="rm-rate">100 Mb/s</span><span class="rm-meta mono">Fast Ethernet · NRZ</span></li>
+      <li class="rm-node" data-year="2002"><span class="rm-rate">1 Gb/s</span><span class="rm-meta mono">GbE · copper twisted pair</span></li>
+      <li class="rm-node" data-year="2010"><span class="rm-rate">10 Gb/s</span><span class="rm-meta mono">10GBASE · NRZ</span></li>
+      <li class="rm-node" data-year="2014"><span class="rm-rate">25 / 100 Gb/s</span><span class="rm-meta mono">802.3by · 25G/lane · NRZ</span></li>
+      <li class="rm-node" data-year="2017"><span class="rm-rate">50 / 200 / 400</span><span class="rm-meta mono">PAM-4 enters · 26 GBd</span></li>
+      <li class="rm-node rm-node-now" data-year="2024"><span class="rm-rate">100 G/lane → 800 GbE</span><span class="rm-meta mono">53 GBd PAM-4 · OSFP / QSFP-DD</span></li>
+      <li class="rm-node rm-node-future" data-year="2026"><span class="rm-rate">200 G/lane → 1.6 T</span><span class="rm-meta mono">802.3dj · 106.25 GBd PAM-4</span></li>
+      <li class="rm-node rm-node-future" data-year="2030"><span class="rm-rate">400 G/lane → 3.2 T</span><span class="rm-meta mono">OIF research · PAM-6 · CPO</span></li>
+    </ol>
+  </div>
+
+  <div class="two-col roadmap-impact">
+    <div class="col">
+      <h3 class="col-h">Where margin goes at 200 G/lane</h3>
+      <ul class="bullets">
+        <li><strong>Passive channel margin</strong> approaches zero — every discontinuity costs.</li>
+        <li><strong>Mode-conversion sensitivity</strong> rises exponentially with frequency.</li>
+        <li><strong>Validation workload</strong> explodes — automation is no longer optional.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3 class="col-h">Business consequence</h3>
+      <ul class="bullets">
+        <li>Electrically weak interconnect forces <strong>more complex, power-hungry DSPs</strong>.</li>
+        <li>Drives <strong>more expensive thermal solutions</strong> at the system level.</li>
+        <li>A strong physical layer <strong>preserves margin</strong> and improves overall system efficiency.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="slide-foot">
+    <p class="pull">
+      The value I create is not a single connector or cable. The value is a repeatable operating system — physics to production — running at the speed the market demands.
+    </p>
+  </footer>
+</section>
+
+<!-- ============================================================
+     CLOSING
+============================================================ -->
+<section class="slide slide-close" data-screen-label="19 Close" id="close">
+  <header class="slide-head close-head">
+    <span class="slide-num">END</span>
+    <h2 class="slide-title">Thank you.</h2>
+    <p class="slide-deck close-deck">
+      I build and lead the systems that turn high-speed interconnect complexity into a repeatable execution advantage. I connect first-principles physics to at-scale production — with a culture of rigorous correlation and a backbone of intelligent automation.
+    </p>
+  </header>
+
+  <div class="close-actions">
+    <a class="btn" href="#hero">↑ Back to top</a>
+    <button class="btn" data-action="print">⌘ P · Print / save as PDF</button>
+    <button class="btn btn-primary" data-action="toggle-present"><span class="kbd">P</span> Present mode</button>
+  </div>
+
+  <p class="close-foot mono muted">Ready for your questions.</p>
+</section>
+
+</main>
+
+<script src="assets/script.js"></script>
+<script type="application/json" id="speaker-notes">[
+  "Thank you for the opportunity. This presentation isn't just about what I've built; it's about how I build. I will demonstrate how I run high-speed interconnect development as a controllable, predictable engineering system.\n\nMy core message is this: I close the loop from first-principles physics, to empirical correlation, to at-scale production — and I make that capability permanent through standards and automation.",
+  "Six integrated functions: EM and SI simulation, test and failure analysis, passive and active product development, project and risk management, industry standards leadership, and design automation. I'll keep the narrative at the strategic level, but I'm prepared to go into deep technical detail on any slide. Please feel free to interrupt.",
+  "This slide frames the central difficulty of our field. We are not designing a single component; we are managing a tightly coupled, multi-domain system. The visible metrics — impedance, crosstalk, loss — are merely symptoms. The root causes are physical.\n\nThe most common mistake I see is teams chasing symptoms independently. A change that 'improves' impedance can degrade common-mode conversion. This is how projects fall behind — local optimization leading to global failure.\n\nMy approach is built on a declared, ordered optimization. We optimize by data, not intuition, protecting the parameters hardest to recover later.",
+  "Simulation is where we convert concepts into designs that can survive the realities of physics and manufacturing. I run a disciplined, three-stage process: time-domain for fundamental control; frequency-domain for resonance and mode behaviour; channel-level for the system margin prediction.\n\nCrucially, I treat the quality of the model as a primary result. Before we trust any S-parameter file, it must pass checks for passivity, causality, and reciprocity.",
+  "At today's data rates, the biggest technical risk is not the design itself — it's false confidence in a flawed model. The S-parameter plot shows what the solver thinks happened. The mesh view shows whether the solver had a fair chance of being right.\n\nI personally review mesh quality in pin-to-pad transitions and other areas of high field gradient. A mesh that is numerically stable but physically wrong is a failure. For a principal engineer, this is the job: validating the simulation methodology itself.",
+  "Once we have a physical prototype, my goal is rapid and defensible root-cause isolation. I use four complementary domains and cross-validate physical hypotheses across time and frequency.\n\nMulti-channel automation is not a throughput tool; it's a data-quality tool. It eliminates operator variance, guarantees traceability, and allows statistically meaningful analysis across manufacturing lots.",
+  "This slide demonstrates execution across the full spectrum — passive, active copper, active optical — using the 100G PAM-4 Active Copper Cable as a case study.\n\nI treat a technology demonstration like this as a system-validation milestone, not a marketing event. The real challenge is never just 'meeting the eye diagram.' It's creating a design and validation flow that can survive variation — in the design, in assembly, and in the customer's lab.",
+  "Each product category has a different dominant bottleneck. However, a common engineering operating model scales across all of them. This common model is an asset. It prevents the organisation from having to relearn first principles every time the market shifts.",
+  "At 224-gigabit signalling, the connector is no longer a component; it is the heart of the channel. It's where SI performance, mechanical packaging and manufacturing repeatability interact most violently.\n\nI drive consideration of manufacturing variation from day one — plating thickness, contact tolerance, solder-process distortion. A connector that is perfect in the model but fragile in production is a failed design.",
+  "I run programs as a managed system with explicit mechanisms and risk controls. What's critical is the coupling between stages. If they're decoupled, the program accumulates hidden technical debt that emerges as a surprise crisis late in validation.\n\nFive principles: define the real goal; bound the problem; make trade-offs explicit; build mechanisms — not reliance on heroes; maintain active risk control.",
+  "This slide is short, but it describes the single biggest predictor of project success or failure. In high-speed design, the electrical result is a cross-functional output, not an SI-only deliverable.\n\nWhen assumptions are hidden, teams optimize locally and create system-level failures. My operating model is one of high transparency. This is not bureaucracy — it's a quality and leadership mechanism.",
+  "I don't treat standards work as passive attendance. It's a strategic, forward-looking activity that gives three advantages: early insight into future electrical limits, influence over future test methodology, and a preview of what will become customer requirements in 18–24 months. This is how standards participation transforms from compliance cost into competitive advantage.",
+  "As channel speeds and parameter counts explode, manual workflows become both a schedule bottleneck and a quality risk. The primary objective of automation is not speed; it's deterministic engineering execution. Reproducible setups, consistent sweeps, standardised result extraction, auditable reports.",
+  "Successful automation requires two systems: an engineering system and a resource-management system. Each technical module requires a management rule. This is the difference between a collection of scripts and a scalable organisational capability.\n\nI also build in tacit knowledge — the system knows when a simplified PEC model is acceptable for a trend study but must be retired before signoff. This prevents junior engineers from generating false confidence.",
+  "Reusable, version-controlled Python libraries and templates are non-negotiable. If a customer challenges a result six months later, we must be able to reconstruct the simulation exactly — solver settings, material models, post-processing assumptions.\n\nThe talent leverage is real: new engineers contribute on baseline analysis immediately, freeing senior engineers for architecture, interpretation and high-value failure analysis.",
+  "I use checklists for one reason: to prevent recurring, high-cost failures. This is my PCB design checklist. Six gates, each one mapped to a high-cost failure I've seen at least three times.\n\nThe success matrix step is the one most teams skip — and it's the one that decides whether their data is decision-useful or just technically correct.",
+  "Same discipline applied to connector design, where the physics are more concentrated and manufacturing sensitivities are even more severe. We start with a success matrix aligned to system-level channel margin, not isolated S-parameter targets. The final maturity gate is variation analysis.",
+  "This is the most important mechanism in my workflow. When a model does not match the measurement, I do not permit a generic debate. I force the diagnosis into this four-quadrant matrix.\n\nA mismatch can have only four root causes. My method is to first classify the mismatch by its signature — broadband slope error points to Q1; a sharp notch points to Q1 or Q2. The signature immediately narrows the possibilities. Then we run the minimum-cost experiment to definitively isolate the quadrant.\n\nThis framework removes guesswork.",
+  "I close with the Ethernet roadmap because it defines the business context and the urgency. The industry is pushing into 1.6-terabit systems, which rely on 200-gigabit-per-lane signalling. At these speeds, passive channel margin disappears.\n\nThis has a direct impact on system power, thermal design and unit cost. An electrically weak interconnect forces the system to compensate with more complex, power-hungry DSPs. A strong physical-layer interconnect, on the other hand, preserves margin and improves overall system efficiency.\n\nThis is why I position interconnect engineering as a strategic enabler, not a support function.",
+  "To summarise: I build and lead the systems that turn high-speed interconnect complexity into a repeatable execution advantage. I'm ready for your questions."
+]</script>
+</body>
+</html>
