@@ -1,9 +1,9 @@
 /* ====================================================================
    Site behaviour:
-   - Tab mode (default): one slide at a time, sidebar navigation
+   - Tab mode (default): one slide at a time, sectioned sidebar
    - Present mode: snap-scroll, slide counter, arrow keys
    - Speaker notes drawer (synced to current slide)
-   - Sidebar builds itself from .slide sections
+   - Sidebar groups slides into 5 themed sections
    ==================================================================== */
 
 (() => {
@@ -14,25 +14,75 @@
   const main = $('main');
   const slides = () => $$('.slide');
 
-  // ───── Build sidebar TOC ─────
+  // ───── Section definitions (must match data-section attr) ─────
+  const SECTIONS = [
+    { id: 'overview',    label: 'Overview' },
+    { id: 'expertise',   label: 'Technical Expertise' },
+    { id: 'products',    label: 'Product Development' },
+    { id: 'leadership',  label: 'Leadership & Standards' },
+    { id: 'automation',  label: 'Automation & Quality' },
+  ];
+
+  const SECTION_LABELS = Object.fromEntries(SECTIONS.map(s => [s.id, s.label]));
+
+  // ───── Build sectioned sidebar ─────
   const sidebarNav = $('#sidebar-nav');
   function buildSidebar() {
     sidebarNav.innerHTML = '';
+
+    // Group slides by data-section
+    const groups = new Map();
+    SECTIONS.forEach(s => groups.set(s.id, []));
     slides().forEach((s, i) => {
-      const label = s.getAttribute('data-screen-label') || s.id || `Slide ${i + 1}`;
-      const btn = document.createElement('button');
-      btn.className = 'sidebar-item';
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('data-index', i);
-      btn.innerHTML = `
-        <span class="si-num">${String(i).padStart(2, '0')}</span>
-        <span class="si-label">${label.replace(/^\d+\s*/, '')}</span>
-      `;
-      btn.addEventListener('click', () => goTo(i));
-      sidebarNav.appendChild(btn);
+      const sec = s.getAttribute('data-section') || 'other';
+      if (!groups.has(sec)) groups.set(sec, []);
+      groups.get(sec).push({ el: s, idx: i });
+    });
+
+    let globalIdx = 0;
+    SECTIONS.forEach((secDef) => {
+      const groupEls = groups.get(secDef.id) || [];
+      if (groupEls.length === 0) return;
+
+      const groupDiv = document.createElement('div');
+      groupDiv.className = 'section-group';
+      groupDiv.dataset.section = secDef.id;
+
+      const header = document.createElement('button');
+      header.className = 'section-header';
+      header.innerHTML = `<span class="section-toggle expanded">▶</span><span>${secDef.label}</span>`;
+      header.addEventListener('click', () => toggleSection(groupDiv));
+
+      const slideContainer = document.createElement('div');
+      slideContainer.className = 'section-slides';
+
+      groupEls.forEach(({ el, idx }) => {
+        const label = el.getAttribute('data-screen-label') || el.id || `Slide ${idx + 1}`;
+        const btn = document.createElement('button');
+        btn.className = 'sidebar-item';
+        btn.setAttribute('role', 'tab');
+        btn.dataset.index = idx;
+        btn.innerHTML = `
+          <span class="si-num">${String(idx).padStart(2, '0')}</span>
+          <span class="si-label">${label.replace(/^\d+\s*/, '')}</span>
+        `;
+        btn.addEventListener('click', () => goTo(idx));
+        slideContainer.appendChild(btn);
+      });
+
+      groupDiv.appendChild(header);
+      groupDiv.appendChild(slideContainer);
+      sidebarNav.appendChild(groupDiv);
     });
   }
-  buildSidebar();
+
+  function toggleSection(groupDiv) {
+    const container = groupDiv.querySelector('.section-slides');
+    const toggle = groupDiv.querySelector('.section-toggle');
+    const isExpanded = container.style.display !== 'none';
+    container.style.display = isExpanded ? 'none' : '';
+    toggle.classList.toggle('expanded', !isExpanded);
+  }
 
   // ───── Tab switching ─────
   let currentIdx = 0;
@@ -51,25 +101,38 @@
     if (body.classList.contains('mode-present')) {
       list[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      // Tab mode: switch active slide
       list.forEach((s) => s.classList.remove('active'));
       list[idx].classList.add('active');
     }
 
     setActive(idx);
+    ensureSectionVisible(idx);
+  }
+
+  function ensureSectionVisible(idx) {
+    const s = slides()[idx];
+    if (!s) return;
+    const secId = s.getAttribute('data-section') || 'other';
+    const group = sidebarNav.querySelector(`.section-group[data-section="${secId}"]`);
+    if (group) {
+      const container = group.querySelector('.section-slides');
+      const toggle = group.querySelector('.section-toggle');
+      if (container && container.style.display === 'none') {
+        container.style.display = '';
+        if (toggle) toggle.classList.add('expanded');
+      }
+    }
   }
 
   function setActive(idx) {
     currentIdx = idx;
-    // Update sidebar
-    sidebarItems().forEach((btn, i) => btn.classList.toggle('active', i === idx));
-    // Update present HUD
+    sidebarItems().forEach((btn, i) => {
+      const bIdx = parseInt(btn.dataset.index);
+      btn.classList.toggle('active', bIdx === idx);
+    });
     if (presentIdxEl) presentIdxEl.textContent = String(idx + 1).padStart(2, '0');
-    // Update bottom nav
     if (navCurrentEl) navCurrentEl.textContent = idx + 1;
-    // Update speaker notes
     updateNotes(idx);
-    // Tell host (for editor)
     try { window.parent.postMessage({ slideIndexChanged: idx }, '*'); } catch (e) {}
   }
 
@@ -80,7 +143,7 @@
   }
   refreshTotal();
 
-  // ───── Intersection Observer for present mode ─────
+  // ───── IntersectionObserver for present mode ─────
   const io = new IntersectionObserver((entries) => {
     if (!body.classList.contains('mode-present')) return;
     let best = null;
@@ -95,12 +158,9 @@
     }
   }, { threshold: [0.3, 0.6, 0.9] });
 
-  function observeSlides() {
-    slides().forEach((s) => io.observe(s));
-  }
+  function observeSlides() { slides().forEach((s) => io.observe(s)); }
   observeSlides();
 
-  // Re-observe when slides are dynamically added
   const mo = new MutationObserver(() => {
     io.disconnect();
     observeSlides();
@@ -133,7 +193,7 @@
     }
   }
 
-  // ───── Buttons / toggles ─────
+  // ───── Toggles ─────
   function toggleNotes(force) {
     const open = force == null ? !notesDrawer.classList.contains('open') : !!force;
     notesDrawer.classList.toggle('open', open);
@@ -145,16 +205,12 @@
     const on = force == null ? !body.classList.contains('mode-present') : !!force;
     body.classList.toggle('mode-present', on);
     body.classList.toggle('mode-tab', !on);
-
     $$('[data-action="toggle-present"]').forEach(b => b.setAttribute('aria-pressed', on));
-
     if (on) {
-      // Present mode: show all slides, snap to current
       slides().forEach((s) => s.classList.remove('active'));
       const s = slides()[currentIdx];
       if (s) s.scrollIntoView({ behavior: 'instant', block: 'start' });
     } else {
-      // Back to tab mode: show only current slide
       slides().forEach((s, i) => s.classList.toggle('active', i === currentIdx));
     }
   }
@@ -174,7 +230,6 @@
   // ───── Keyboard navigation ─────
   document.addEventListener('keydown', (e) => {
     if (/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
-
     if (e.key === 'p' || e.key === 'P') { togglePresent(); }
     else if (e.key === 'n' || e.key === 'N') { toggleNotes(); }
     else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
@@ -191,7 +246,7 @@
     }
   });
 
-  // ───── Four-quadrant interactive matrix (S17) ─────
+  // ───── Four-quadrant matrix (S17) ─────
   function setQuadrant(id) {
     $$('.qd').forEach(b => b.setAttribute('aria-selected', b.dataset.quadrant === id ? 'true' : 'false'));
     $$('.qd-panel').forEach(p => p.hidden = (p.dataset.panel !== id));
@@ -201,7 +256,8 @@
     if (q) setQuadrant(q.dataset.quadrant);
   });
 
-  // ───── Init: show first slide in tab mode ─────
+  // ───── Init ─────
+  buildSidebar();
   slides().forEach((s, i) => s.classList.toggle('active', i === 0));
   setActive(0);
 })();

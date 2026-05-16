@@ -1,72 +1,42 @@
 # Execution Log — self-intro-web
 
-## Project Context
-
-Single-page self-introduction site for Jie Zheng (Principal Signal Integrity Engineer). Pure HTML/CSS/JS static site deployed via S3 + CloudFront.
-
 ## Progress Log
 
 ### Stop 1: Initial Local Setup ✓
-
 - **Date**: 2026-05-16
-- Explored repository structure (index.html, styles.css, script.js)
-- Identified it's a pure static site with 19 slides, read and present modes
-- Started local dev server at http://localhost:8080
-- **Status**: Complete
+- Explored repository structure, identified as pure static site
+- Started local dev at http://localhost:8080
 
 ### Stop 2: Design Specification ✓
-
-- **Date**: 2026-05-16
-- Created `docs/design-spec.md` documenting tech stack, layout architecture, color system improvements
-- Documented all design tokens and their new values
-- Defined component states for sidebar, slide transitions
-- Extracted reusable `.claude/prompt.md` template for future projects
-- **Status**: Complete
+- Created `docs/design-spec.md` with tech stack, layout, color tokens
+- Extracted reusable `.claude/prompt_presentation_web.md` template
 
 ### Stop 3: Tab/Sidebar Layout Refactor ✓
+- Tab-based navigation (sidebar + one-slide-at-a-time)
+- Sticky left sidebar TOC
+- Bottom Prev/Next nav bar
+- Print styles fixed (missing @media print)
+- **Status**: Complete
 
-- **Date**: 2026-05-16
-- **Completed**:
-
-  | Change | Details |
-  |--------|---------|
-  | Layout restructure | Replaced single long-scroll with sidebar + tab layout |
-  | Sidebar TOC | 240px fixed left panel with labeled slide navigation |
-  | Content area | One-slide-at-a-time with fade transition |
-  | Bottom nav | Prev/Next buttons with slide counter |
-  | Readability | Brightened text-2 (#b9bdc6 → #cdd1da), text-3 (#7a8290 → #949cab), lighter surface (#131923 → #161e2b) |
-  | Chrome | Slimmer header (64px → 56px) |
-  | Present mode | Preserved full-screen snap-scroll behavior |
-  | Print styles | Fixed missing @media print wrapper |
-
-- **Files modified**:
-  - `index.html`: New layout structure (sidebar, app-body, content-area, slide-nav)
-  - `assets/styles.css`: Rewrote layout, updated color tokens, sidebar + tab system
-  - `assets/script.js`: Tab switching, sidebar build, goTo navigation
+### Stop 4: Light Theme + Section TOC ✓ ← YOU ARE HERE
+- **Color scheme**: Complete light mode (#f8f7f4 warm off-white background)
+- **Titles**: Red (#c62828) for slide titles, numbers, section headers
+- **Highlights**: Blue (#1565c0) for key points, tags, emphasis, buttons
+- **Text**: Dark (#1e1e1e) body text for readability
+- **Sectioned sidebar**: 5 groups (Overview, Technical Expertise, Product Development, Leadership & Standards, Automation & Quality) with expand/collapse
+- **Sidebar**: Current section auto-expands on slide switch
 - **Status**: Complete ✅
 
-### Stop 4: AWS Deployment (Next)
-
-- **Prerequisites**: User review and approval of local changes
-- **Actions**:
-  1. Deploy CloudFormation stack (adapted from `infra/static-site.template.yaml` in BB_Web)
-  2. Sync files to S3 bucket with `aws s3 sync`
-  3. CloudFront invalidation for cache clearing
-  4. (Optional) GitHub Actions CI/CD setup
-
-### Stop 5: Reusable Tools Extraction ✓
-
-- **Created**: `/media/brittany/internal_drive_d/AIIDESetting/IDESettings2/.claude/prompt_presentation_web.md`
-  - Reusable Claude prompt template for converting presentations/PPTs/resumes to web
-  - Includes design considerations, AWS deployment reference, project structure
+### Stop 5: AWS Deployment (Next)
+- Deploy CloudFormation stack → S3 sync → CloudFront
 
 ## Quick Context Switch
 
 | Question | Answer |
 |----------|--------|
-| What are we building? | Tab-based slide navigation for self-intro site |
-| Which files change? | `index.html`, `assets/styles.css`, `assets/script.js` |
-| Current branch? | `master` |
-| Local dev URL? | http://localhost:8080 |
-| Deployment target? | AWS S3 + CloudFront |
-| Next after this? | User review → AWS deployment |
+| What are we doing? | Light theme + sectioned sidebar TOC |
+| Files changed | `index.html`, `assets/styles.css`, `assets/script.js` |
+| Section groups | 5 sections: overview(2), expertise(5), products(3), leadership(4), automation(6) |
+| Colors | Red #c62828 (titles), Blue #1565c0 (highlights), warm-light bg #f8f7f4 |
+| Local dev | http://localhost:8080 |
+| Next | AWS deployment |
