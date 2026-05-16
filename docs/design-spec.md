@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document records design decisions for the Jie Zheng self-introduction presentation website (`self-intro-web`). The site serves as both a standalone reading experience and a live presentation deck for a Principal Signal Integrity Engineer.
+This document records design decisions for the Brittany Zheng self-introduction presentation website (`self-intro-web`). The site serves as both a standalone reading experience and a live presentation deck for a Principal Signal Integrity Engineer.
 
 ## Tech Stack
 
