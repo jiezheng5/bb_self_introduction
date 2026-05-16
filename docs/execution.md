@@ -14,34 +14,42 @@
 - Tab-based navigation (sidebar + one-slide-at-a-time)
 - Sticky left sidebar TOC with labeled items
 - Bottom Prev/Next nav bar
+- **Status**: Complete
 
 ### Stop 4: Light Theme + Section TOC ✓
-- **Light mode**: Warm off-white bg `#f8f7f4`, dark text `#1e1e1e`
-- **Red (#c62828)**: Slide titles, numbers, section headers
-- **Blue (#1565c0)**: Key points, tags, emphasis, buttons
-- **Sectioned sidebar**: 5 groups with expand/collapse
+- Light mode (#f8f7f4), red titles (#c62828), blue highlights (#1565c0)
+- Sectioned sidebar with 5 groups and expand/collapse
+- **Status**: Complete
 
-### Stop 5: AWS Deployment ✓ ← YOU ARE HERE
-- **Date**: 2026-05-16
-- **CloudFormation stack**: `self-intro-site`
-  - S3 bucket: `self-intro-site-sitebucket-nystor5mzpno`
-  - CloudFront OAC (private bucket, CloudFront-only access)
-  - CloudFront distribution with index.html rewrite function
-  - HTTPS redirect enabled
-- **Deployed files**: index.html, assets/, screenshots/, uploads/
+### Stop 5: AWS Infrastructure ✓
+- CloudFormation stack `self-intro-site` deployed
+- S3 bucket (private, OAC-only), CloudFront distribution
+- HTTPS redirect, compression, index.html rewrite function
 - **Live URL**: https://d2mqhbr1u3dr40.cloudfront.net
-- **Type**: Static site via S3 + CloudFront (no build step needed)
+- **Status**: Complete
+
+### Stop 6: CI/CD Pipeline ✓ ← YOU ARE HERE
+- **Date**: 2026-05-16
+- **CloudFormation updated**: Added IAM role for GitHub Actions OIDC
+- **GitHub repository**: https://github.com/jiezheng5/bb_self_introduction
+- **GitHub Actions workflow**: `.github/workflows/deploy.yml`
+- **Secrets configured**: AWS_ROLE_ARN, AWS_REGION, S3_BUCKET, CLOUDFRONT_DISTRIBUTION_ID
+- **Trigger**: Push to `master` or manual dispatch
+- **Verified**: 2 successful deployments via CI/CD ✅
 - **Status**: Complete ✅
 
 ## Quick Context Switch
 
 | Question | Answer |
 |----------|--------|
-| What are we doing? | AWS deployment complete |
 | Live URL | https://d2mqhbr1u3dr40.cloudfront.net |
+| GitHub | https://github.com/jiezheng5/bb_self_introduction |
+| Deploy trigger | `git push origin master` |
+| Workflow | `.github/workflows/deploy.yml` |
 | Stack name | `self-intro-site` |
 | S3 Bucket | `self-intro-site-sitebucket-nystor5mzpno` |
 | CloudFront ID | `E1ZWJFB0UEJHAD` |
-| Config file | `aws-config.json` |
+| IAM Role | `self-intro-site-github-actions-role` |
 | Region | us-west-2 |
-| Next steps | User review of live site → optional custom domain → optional GitHub CI/CD |
+| Local config | `aws-config.json` |
+| Deployment docs | `docs/deployment-guide.md` |

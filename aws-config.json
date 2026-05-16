@@ -4,5 +4,6 @@
   "bucket": "self-intro-site-sitebucket-nystor5mzpno",
   "distributionId": "E1ZWJFB0UEJHAD",
   "siteUrl": "https://d2mqhbr1u3dr40.cloudfront.net",
-  "stackName": "self-intro-site"
+  "stackName": "self-intro-site",
+  "iamRoleArn": "arn:aws:iam::936654323206:role/self-intro-site-github-actions-role"
 }
